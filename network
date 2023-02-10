@@ -1,0 +1,74 @@
+#!/bin/bash
+
+RED="\e[0;31m"
+GREEN="\e[0;32m"
+NOCOLOR="\e[0m"
+
+FECHA=$(date +'%d-%m-%Y')
+echo "Date : $FECHA"
+
+EJECUTABLE='./script.py'
+
+OUTDIR="./logs/$FECHA"
+
+# Creamos el directorio del dia, si es que no existe			
+if [ ! -d $OUTDIR ] ; then
+  	mkdir $OUTDIR
+fi
+
+# Bajamos todas las interfaces con las que vamos a operar
+for IFACE in wlan0 eth0
+do
+	# Creamos el directorio del dia, si es que no existe			
+	if [ ! -d "$OUTDIR/$IFACE" ] ; then
+  		mkdir "$OUTDIR/$IFACE"
+	fi
+	
+	if ifconfig -a | grep $IFACE > /dev/null; then
+		#TODO #ifconfig $IFACE down
+		echo ""
+	# else 
+		# echo -e "\nERROR: Interfaz no encontrada o no disponible"
+	fi
+done 
+
+# Parte de cambio de interfaces en bucle forever
+while true
+do
+	for IFACE in wlan0 eth0
+	do
+		if ifconfig -a | grep $IFACE > /dev/null; then
+			HORA=$(date +'%H:%M:%S')
+			OUTPUTFILE="./logs/$FECHA/$IFACE/ScTi_$HORA.log"
+
+			echo -e "Se levanta la Interfaz de red: $IFACE\nHora: $HORA"
+
+			# Levantamos la interfaz actual
+			#TODO #ifconfig $IFACE up
+		
+			if [ $IFACE == "wlan0" ] ; then
+				echo -e "\nInterfaz$GREEN wlan0$NOCOLOR"
+				#TODO #sleep 15 # espera activa, para que termine de levantar y configurar la interfaz wlan0
+			else
+				echo -e "\nInterfaz$GREEN eth0$NOCOLOR"
+				#TODO #sleep 2 # espera activa, para que termine de levantar y configurar la interfaz eth0
+			fi
+
+			# Ejecutar programa
+			echo -e "\nInterface: $IFACE" >> $OUTPUTFILE
+			echo -e "\nTime: $HORA" >> $OUTPUTFILE
+
+			time $EJECUTABLE >> $OUTPUTFILE
+
+			# cat -n $OUTPUTFILE
+			echo -e "\nPROCESO COMPLETO\n"
+
+			# Bajamos la interfaz actual
+			#TODO #ifconfig $IFACE down 
+
+		else 
+			echo -e "\n[$RED ERROR$NOCOLOR ]: La Interfaz $RED$IFACE$NOCOLOR no ha sido encontrada o no esta disponible"
+		fi
+	done
+done
+

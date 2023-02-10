@@ -1,0 +1,23 @@
+#!/bin/bash
+
+RED="\e[0;31m"
+GREEN="\e[0;32m"
+NOCOLOR="\e[0m"
+
+# sudo service systemd-resolved status
+# sudo service systemd-resolved restart
+resolvectl flush-caches
+# resolvectl status
+# resolvectl statistics
+
+# Meter un IF para comprobar que se ha hecho de forma correcta
+
+echo -e "\n======================================================================\n"
+# sudo service systemd-resolved status
+
+# mostramos la ultima linea de el estado del servicio, si todo a salido bien, ha de salir "dns flushed"
+sudo service systemd-resolved status | tail -1
+echo -e "[$GREEN OK $NOCOLOR]\tLimpiando de caches completado"
+
+echo -e "\n======================================================================\n"
+
