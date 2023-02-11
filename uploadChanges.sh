@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # si es que hay cambios bajarlos
 git pull origin main
 

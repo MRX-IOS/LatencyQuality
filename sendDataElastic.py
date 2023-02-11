@@ -12,11 +12,15 @@ fecha = date.today().strftime("%d-%m-%Y")
 
 #### FILE PATH ####
 filePath = "./exports/resultados_" + fecha + ".csv"
+Host = "192.168.1.58"
+Port = 9200
 
 print(filePath)
 
 #### CONECTION ####
-elastic_Server = Elasticsearch(host = "192.168.1.58", port = 9200)
+
+#elastic_Server = Elasticsearch(host = "192.168.1.58", port = 9200)
+elastic_Server = Elasticsearch(host = Host, port = Port)
 
 #### CREATE INDICE ####
 
@@ -28,6 +32,10 @@ if not elastic_Server.indices.exists(index="prueba"):
 	)
 else:
 	print("Index already exists")
+
+
+
+#### READ DATA ####
 
 index_name = "prueba"
 
@@ -51,6 +59,8 @@ def generate_docs():
 				},
 			}
 			yield doc
+
+#### SEND DATA ####
 
 helpers.bulk(elastic_Server, generate_docs())
 
