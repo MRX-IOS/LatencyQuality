@@ -25,9 +25,9 @@ print (fecha)
 
 # # # V A R I A B L E S  G L O B A L E S # # #
 maxPingTimeout = str(0.5) #Tiemeout in seconds 
-cleanFile = './clean/dns-clean'
-hostsFile = './inFiles/TotalWebs.txt'
-pingBlockFile = './inFiles/PingBlock.txt'
+cleanFile = '../clean/dns-clean'
+hostsFile = '../inFiles/TotalWebs.txt'
+pingBlockFile = '../inFiles/PingBlock.txt'
 #hostsFile = './inFiles/hostsList.txt'
 
 class bcolors:
@@ -90,8 +90,8 @@ def busqueda_binaria(host, lista):
 
 def exportarResultados(tabla):
 	# exporta la tabla resultante a csv
-	final_file_csv = "./exports/resultados_" + str(fecha) + ".csv"
-	final_file_json = "./exports/resultados_" + str(fecha) + ".json"
+	final_file_csv = "../exports/resultados_" + str(fecha) + ".csv"
+	final_file_json = "../exports/resultados_" + str(fecha) + ".json"
 
 	df = pd.DataFrame(tabla, columns=['host', 'public_ip', 'status', 'attempts', 'latency (ms)', 'date', 'timestamp'])
 	# print("\n")
@@ -120,7 +120,7 @@ def envioCorreo(errors, total_hosts):
 	asunto2 = "[RPI] [S0] Calidad de conexión " + str(fecha) + " " + str(hora)
 	cuerpo1 = "Desde Sonda: 0\n¿Caída de Nodo?\n\nPrueba de calidad de conexión mediante una raspberry pi 4 model B.\nSe envian los resultados obtenidos con fecha: " + str(fecha) + " y hora: " + str(hora) + "\n\n"
 	cuerpo2 = "Desde Sonda: 0\n\nPrueba de calidad de conexión mediante una raspberry pi 4 model B.\nSe envian los resultados obtenidos con fecha: " + str(fecha) + " y hora: " + str(hora) + "\n\n"
-	ruta_adjunto = "./exports/resultados_" + str(fecha) + ".csv"
+	ruta_adjunto = "../exports/resultados_" + str(fecha) + ".csv"
 	nombre_adjunto = "resultados_" + str(fecha) + ".csv"
 	aplicationPassword = 'hjzoicvkxjilrsbj'
 

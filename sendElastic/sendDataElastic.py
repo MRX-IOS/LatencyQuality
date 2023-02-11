@@ -11,7 +11,7 @@ from datetime import date
 fecha = date.today().strftime("%d-%m-%Y")
 
 #### FILE PATH ####
-filePath = "./exports/resultados_" + fecha + ".csv"
+filePath = "../exports/resultados_" + fecha + ".csv"
 Host = "192.168.1.58"
 Port = 9200
 
