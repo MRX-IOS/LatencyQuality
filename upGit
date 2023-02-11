@@ -1,9 +1,12 @@
 #!/bin/bash
 
+
+FECHA=$(date +'%d-%m-%Y')
+
 # si es que hay cambios bajarlos
 git pull origin main
 
 # subir cambios a git
 git add .
-git commit -m "cambios"
+git commit -m "subiendo cambios $FECHA"
 git push origin main
