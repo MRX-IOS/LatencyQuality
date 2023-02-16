@@ -1,0 +1,53 @@
+#!/usr/bin/python3
+
+import lists as li
+import dns
+from configuration import *
+import bcolors
+
+def main():
+	tabla = []
+	pingFailures = 0
+	hostsNA = 0
+
+	hosts = li.getList(hostsFile)
+	listaNegra = li.getList(pingBlockFile)
+	total_hosts = len(hosts)
+
+	dns.cleanDNSCache()
+	# myPublicIp()
+
+	for host in hosts:
+		print(host + "\n")
+		resultado = dns.getData(host, listaNegra)
+		#print(resultado)
+
+		tabla.append(resultado)
+		print("\n\tHost: " + str(resultado[0]) + 
+			"\n\tIp Publica: " + str(resultado[1]) + 
+			"\n\tEstado: " + str(resultado[2]) + 
+			"\n\tIntentos: " + str(resultado[3]) + "/3" + 
+			"\n\tLatencia: " + str(resultado[4]) + " ms" + 
+			"\n\tFecha: " + str(resultado[5]) + 
+			"\n\tHora: " + str(resultado[6] + "\n"))
+		
+		# Aqui se cuentan los pingFailures, ademas de trazas de estado de ejecucion
+		# Si solo se desea los pingFailures if resultado != "OK": pingfailures + 1
+		if resultado[2] != "OK":
+			if resultado[2] != "KO":
+				print("\t[" + bcolors.FAIL + "FAIL" + bcolors.ENDC + "] NO PING, " + bcolors.FAIL + "BANNED " + bcolors.ENDC + "HOST\n")
+				hostsNA = hostsNA + 1
+			else:
+				print("\t[" + bcolors.FAIL + "FAIL" + bcolors.ENDC +"] PING " + bcolors.FAIL + "ERROR\n" + bcolors.ENDC)
+				pingFailures = pingFailures + 1
+		else:
+			print("\t[" + bcolors.OK + "OK" + bcolors.ENDC + "] PING " + bcolors.OK + "SUCCESS\n" + bcolors.ENDC)
+
+		print("==============================================")
+		
+	# pingeds es los que han dado OK o KO
+	pingeds = total_hosts - hostsNA
+	
+
+if __name__ == "__main__":
+    main()
