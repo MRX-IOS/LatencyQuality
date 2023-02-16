@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 def getList(path):
 	# Convertimos un archivo en una lista, cuyos elementos son las lineas, se quitan tambien los saltos de linea

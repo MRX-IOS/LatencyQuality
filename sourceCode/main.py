@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
-import lists as li
 import dns
-from configuration import *
+import send
+import export
 import bcolors
+import lists as li
+from configuration import *
 
 def main():
 	tabla = []
@@ -48,6 +50,10 @@ def main():
 	# pingeds es los que han dado OK o KO
 	pingeds = total_hosts - hostsNA
 	
+	export.csv(tabla)
+	export.json(tabla)
+	print("\n")
+	send.email(pingFailures, pingeds)
 
 if __name__ == "__main__":
     main()
