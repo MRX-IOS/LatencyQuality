@@ -1,0 +1,119 @@
+
+Interface: wlan0
+
+Time: 23:45:20
+
+======================================================================
+
+feb 16 23:45:21 mrx-server systemd-resolved[557]: Flushed all caches.
+[[0;32m OK [0m]	Limpiando de caches completado
+
+======================================================================
+
+
+Limpiando la cache de DNS...
+
+101domain.com
+
+[>] DNS RESOLUTION FOR: 101domain.com
+	[[92m[1mOK[0m] DNS [92mSUCCESS
+[0m
+[>] THROWING PING FOR: 101domain.com
+	[1] Estado del servicio:	[[1m[92mOK[0m]
+	Tiempo de respuesta: 5.01 ms
+
+	Host: 101domain.com
+	Ip Publica: 104.23.139.9
+	Estado: OK
+	Intentos: 1/3
+	Latencia: 5.01 ms
+	Fecha: 16-02-2023
+	Hora: 23:45:21
+
+	[[92mOK[0m] PING [92mSUCCESS
+[0m
+==============================================
+20minutos.es
+
+[>] DNS RESOLUTION FOR: 20minutos.es
+	[[92m[1mOK[0m] DNS [92mSUCCESS
+[0m
+[>] THROWING PING FOR: 20minutos.es
+	[1] Estado del servicio:	[[1m[92mOK[0m]
+	Tiempo de respuesta: 6.91 ms
+
+	Host: 20minutos.es
+	Ip Publica: 18.154.41.61
+	Estado: OK
+	Intentos: 1/3
+	Latencia: 6.91 ms
+	Fecha: 16-02-2023
+	Hora: 23:45:21
+
+	[[92mOK[0m] PING [92mSUCCESS
+[0m
+==============================================
+2checkout.com
+
+[>] DNS RESOLUTION FOR: 2checkout.com
+	[[92m[1mOK[0m] DNS [92mSUCCESS
+[0m
+[>] THROWING PING FOR: 2checkout.com
+	[0] Estado del servicio:	[[1m[93mN/A[0m]
+
+	Host: 2checkout.com
+	Ip Publica: N/A
+	Estado: N/A
+	Intentos: 0/3
+	Latencia: 0.0 ms
+	Fecha: 16-02-2023
+	Hora: 23:45:21
+
+	[[91mFAIL[0m] NO PING, [91mBANNED [0mHOST
+
+==============================================
+4shared.com
+
+[>] DNS RESOLUTION FOR: 4shared.com
+	[[92m[1mOK[0m] DNS [92mSUCCESS
+[0m
+[>] THROWING PING FOR: 4shared.com
+	[1] Estado del servicio:	[[1m[92mOK[0m]
+	Tiempo de respuesta: 131 ms
+
+	Host: 4shared.com
+	Ip Publica: 204.155.149.41
+	Estado: OK
+	Intentos: 1/3
+	Latencia: 131 ms
+	Fecha: 16-02-2023
+	Hora: 23:45:22
+
+	[[92mOK[0m] PING [92mSUCCESS
+[0m
+==============================================
+500px.com
+
+[>] DNS RESOLUTION FOR: 500px.com
+	[[92m[1mOK[0m] DNS [92mSUCCESS
+[0m
+[>] THROWING PING FOR: 500px.com
+	[0] Estado del servicio:	[[1m[93mN/A[0m]
+
+	Host: 500px.com
+	Ip Publica: N/A
+	Estado: N/A
+	Intentos: 0/3
+	Latencia: 0.0 ms
+	Fecha: 16-02-2023
+	Hora: 23:45:22
+
+	[[91mFAIL[0m] NO PING, [91mBANNED [0mHOST
+
+==============================================
+abacus.coop
+
+[>] DNS RESOLUTION FOR: abacus.coop
+	[[92m[1mOK[0m] DNS [92mSUCCESS
+[0m
+[>] THROWING PING FOR: abacus.coop

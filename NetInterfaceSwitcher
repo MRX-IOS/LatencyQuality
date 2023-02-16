@@ -7,7 +7,7 @@ NOCOLOR="\e[0m"
 FECHA=$(date +'%d-%m-%Y')
 echo "Date : $FECHA"
 
-EJECUTABLE='./script.py'
+EJECUTABLE='./sourceCode/netPulse.py'
 
 OUTDIR="./logs/$FECHA"
 
