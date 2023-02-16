@@ -19,7 +19,6 @@ print(filePath)
 
 #### CONECTION ####
 
-#elastic_Server = Elasticsearch(host = "192.168.1.58", port = 9200)
 elastic_Server = Elasticsearch(host = Host, port = Port)
 
 #### CREATE INDICE ####
@@ -31,9 +30,7 @@ if not elastic_Server.indices.exists(index="prueba"):
 		body = configurations
 	)
 else:
-	print("Index already exists")
-
-
+	print("Index already exists. Uploading data...")
 
 #### READ DATA ####
 
@@ -47,7 +44,7 @@ def generate_docs():
 		for row in reader:
 			doc = {
 				"_index": index_name,
-				"_id": row["host"],
+				# "_id": row["host"],
 				"_source": {
 					"host": 		row["host"],
 					"public_ip": 		row["public_ip"],
