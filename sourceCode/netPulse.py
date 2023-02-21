@@ -2,9 +2,11 @@
 
 import dns
 import send
+import sendElastic
 import export
 import bcolors
 import lists as li
+
 from configuration import *
 
 def main():
@@ -54,6 +56,7 @@ def main():
 	export.json(tabla)
 	print("\n")
 	send.email(pingFailures, pingeds)
+	sendElastic.run()
 
 if __name__ == "__main__":
     main()
