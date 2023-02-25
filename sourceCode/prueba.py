@@ -1,4 +1,11 @@
 #!/usr/bin/python3
 import sendElastic
+import datetime 
+from datetime import datetime
 
-sendElastic.send()
+
+hora = datetime.now().strftime("%H:%M:%S")
+fecha = datetime.now().strftime("%d/%m/%Y")
+
+fecha = fecha + "@" + hora
+print(fecha)

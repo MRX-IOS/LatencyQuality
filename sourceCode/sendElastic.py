@@ -18,7 +18,7 @@ index_name = "sonda_0"
 
 #### FILE PATH ####
 filePath = path + "exports/resultados_" + fecha + ".csv"
-print(filePath)
+# print(filePath)
 
 def isLowerCase(s):
 	if s != s.lower():
@@ -66,7 +66,6 @@ def generateDoc():
 					"attempts": 		int(row["attempts"]),
 					"latency_ms": 		float(row["latency (ms)"]),
 					"date": 		row["date"],
-					"timestamp": 		row["timestamp"],
 				},
 			}
 			yield doc
@@ -96,3 +95,4 @@ def run():
 	# print(result)
 	return result
 
+# run()

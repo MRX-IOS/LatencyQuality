@@ -11,8 +11,6 @@ from datetime import datetime
 from configuration import cleanFile
 from configuration import pingBlockFile as listaNegra
 
-# dd/mm/YY
-fecha = date.today().strftime("%d-%m-%Y")
 
 def cleanDNSCache():
 	print ('\nLimpiando la cache de DNS...\n')
@@ -47,9 +45,11 @@ def getData(host, listaNegra):
 
 	except (ValueError, socket.error, socket.gaierror, socket.herror, socket.timeout):
 		# host_no_resolved = ["N/A", ["N/A"], ["N/A"]]
-
+		# dd/mm/YY
+		fecha = date.today().strftime("%d-%m-%Y")
 		hora = datetime.now().strftime("%H:%M:%S")
-		pingNotPossible = [host, "N/A", "N/A", "0", "0.0", fecha, hora]
+		fecha = fecha + " " + hora
+		pingNotPossible = [host, "N/A", "N/A", "0", "0.0", fecha]
 
 		print("\t[" + bcolors.FAIL + bcolors.BOLD + "FAIL" + bcolors.ENDC + "] DNS " + bcolors.FAIL + "ERROR" + bcolors.ENDC + "\n")
 

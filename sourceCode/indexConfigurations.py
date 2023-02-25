@@ -24,15 +24,19 @@ configurations = {
 	"mappings": {
 		"properties": {
 			"@timestamp": {
-				"type": "date"
+				"type": "date",
 			},
 			"attempts": {
 				"type": "long"
 			},
 			"date": {
 				"type": "date",
-				"format": "dd-MM-yyyy"
+				"format": "dd-MM-yyyy HH:mm:ss"
 			},
+			#"time": {
+			#	"type": "date",
+			#	"format": "HH:mm:ssZ"
+			#},
 			"host": {
 				"type": "keyword"
 			},
@@ -45,9 +49,6 @@ configurations = {
 			"status": {
 				"type": "keyword"
 			},
-			"timestamp": {
-				"type": "keyword"
-			}		
 		}
 	}
 }

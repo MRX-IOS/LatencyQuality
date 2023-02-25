@@ -9,8 +9,6 @@ from datetime import date
 
 import bcolors
 
-# dd/mm/YY
-fecha = date.today().strftime("%d-%m-%Y")
 
 def run(host, listaNegra):
 	# Lanza un ping, y devuelve un array indicando, host, estado de finalizacion, intento en el que se consigue exito y tiempo
@@ -47,7 +45,10 @@ def run(host, listaNegra):
 			estado = "OK"
 		else:
 			estado = "KO"
-			
+
+	# dd/mm/YY @ H:M:S
+	fecha = date.today().strftime("%d-%m-%Y")
 	hora = datetime.now().strftime("%H:%M:%S")
-	resultado = [host, publicIp, estado, intentos, time, fecha, hora]
+	fecha = fecha + " " + hora
+	resultado = [host, publicIp, estado, intentos, time, fecha]
 	return resultado
