@@ -4,7 +4,7 @@ from datetime import date
 from datetime import datetime
 
 # The maximum timeout for the ping command
-maxPingTimeout = "0.5"
+maxPingTimeout = "0.2"
 
 # The path to the folder where the project is located
 path = "/home/mrx/TFG/proyecto/LatencyQuality/"
