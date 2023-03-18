@@ -84,7 +84,12 @@ def getData(host, listaNegra):
 		fecha = date.today().strftime("%d-%m-%Y")
 		hora = datetime.now().strftime("%H:%M:%S")
 		fecha = fecha + " " + hora
-		pingNotPossible = [host, "N/A", "N/A", "0", "N/A", "N/A", "N/A", "N/A", "N/A", 0, "N/A", 0.0, fecha]
+		
+		"""
+		loc Geopoint	
+		"""
+		loc = "0.0,0.0"
+		pingNotPossible = [host, "N/A", "N/A", "0", "N/A", "N/A", "N/A", loc, "N/A", 0, "N/A", 0.0, fecha]
 
 		print("\t[" + bcolors.FAIL + bcolors.BOLD + "FAIL" + bcolors.ENDC + "] DNS " + bcolors.FAIL + "ERROR" + bcolors.ENDC + "\n")
 

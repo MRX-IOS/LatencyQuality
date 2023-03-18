@@ -50,20 +50,18 @@ def createIndex(elastic_Server):
 		print("[INFO] Index already exists!")
 
 def generateDoc():
-	"""
+	""" 
 		Generate a document to send to Elasticsearch
 	"""
-	#f.to_csv(final_file_csv, index=False, encoding='utf-8', sep=';', columns=['host', 'public_ip', 'status', 'attempts', 'city', 'country', 'localization', 'organization', 'postal', 'timezone', 'latency (ms)', 'date'], na_rep='Unknow')
-
 	#### GENERATE DOCUMENT ####
+
 	with open(filePath, "r") as fi:
 		reader = csv.DictReader(fi, delimiter=";")
 		actions = []
-
+	
 		for row in reader:
 			doc = {
 				"_index": index_name,
-				# "_id": row["host"],
 				"_source": {
 					"host": 		row["host"],
 					"public_ip": 	row["public_ip"],
@@ -72,22 +70,20 @@ def generateDoc():
 					"city":			row["city"],
 					"region": 		row["region"],
 					"country": 		row["country"],
-					"localization": row["localization"],
+					"location": 	row["location"],
 					"organization": row["organization"],
 					"postal": 		int(row["postal"]),
 					"timezone": 	row["timezone"],
 					"latency_ms": 	float(row["latency (ms)"]),
-					"date": 		row["date"],
-				},
+					"date": 		row["date"]
+				}
 			}
 			yield doc
 	return doc
 
 def sendData(elastic_Server, doc):
 	#### SEND DATA ####
-	# Send the data:
 	helpers.bulk(elastic_Server, doc)
-	# print(result.body['count'])
 
 def run():
 	if isLowerCase(index_name) == False:
@@ -99,12 +95,12 @@ def run():
 		result = elastic_Server.count(index=index_name)
 		print("[INFO] Indexing data...")
 		doc = generateDoc()
+		#doc = {}
 		print("[INFO] Sending data to Elasticsearch...")
 		sendData(elastic_Server, doc)
 
 	# Check the results:
 	result = elastic_Server.count(index=index_name)
-	# print(result)
 	return result
 
 # run()

@@ -41,9 +41,9 @@ configurations = {
 			"country": {
 				"type": "keyword"
 			},
-			"localization": {
-				"type": "keyword"
-			},
+            "location": {
+               "type": "geo_point"
+            },
 			"organization": {
 				"type": "keyword"
 			},

@@ -2,6 +2,7 @@
 
 import os
 import json	
+import requests
 
 """
 
@@ -13,6 +14,21 @@ import json
 
 URL = 'https://ipinfo.io/'
 token = 'c94afc1c907984'
+
+def myPublicIP():
+	# curl
+	ip = os.popen("curl -s https://ipinfo.io/ip").read()
+	return ip
+
+def myData():
+	ip = myPublicIP()
+	# añadir ip a la lista
+	data = []
+	data.append(ip)
+	# añadir info a la lista
+	data.extend(getInfo(ip))
+
+	return data
 
 def getInfo(host):
 	"""
@@ -76,5 +92,7 @@ def getInfo(host):
 	return info
 
 if __name__ == '__main__':
+	print("MY PUBLIC IP:= ", myPublicIP())
+	print("MY DATA:= ", myData())
 	print(getInfo('92.189.190.237'))
 	print(getInfo('39.156.66.10')) # baidu.com

@@ -34,7 +34,8 @@ def run(host, listaNegra):
 	city = "N/A"
 	region = "N/A"
 	country = "N/A"
-	loc = "N/A"
+	# loc geoPoint
+	loc = "0.0,0.0"
 	org = "N/A"
 	postal = 0
 	timezone = "N/A"

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+"""
+
+Script para ejecutar el programa netPulse.py desde crontab
+
+"""
 path=/home/mrx/TFG/proyecto/LatencyQuality/sourceCode
 executable=${path}/netPulse.py
 date_Date=$(date "+%d-%m-%Y")

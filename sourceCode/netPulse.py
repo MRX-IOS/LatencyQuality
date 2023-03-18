@@ -6,6 +6,7 @@ import sendElastic
 import export
 import bcolors
 import lists as li
+from ipinfo import myPublicIP, myData
 
 from configuration import *
 
@@ -19,15 +20,25 @@ def main():
 	total_hosts = len(hosts)
 
 	dns.cleanDNSCache()
-	# myPublicIp()
+
+	data = myData()
+	print("Public IP: " + data[0])
+	print("City: " + data[1])
+	print("Region: " + data[2])
+	print("Country: " + data[3])
+	print("Location: " + data[4])
+	print("Organization: " + data[5])
+	print("Postal: " + str(data[6]))
+	print("Timezone: " + data[7])
 
 	for host in hosts:
 		print(host + "\n")
 		resultado = dns.getData(host, listaNegra)
-		#print(resultado)
+		# print(resultado)
 
 		fecha = resultado[12].split(" ")
 		tabla.append(resultado)
+
 		# tabla = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
 		print("\n\tHost: " + str(resultado[0]) + 
 			"\n\tIp Publica: " + str(resultado[1]) + 
@@ -36,7 +47,7 @@ def main():
 			"\n\tCiudad: " + str(resultado[4]) +
 			"\n\tRegion: " + str(resultado[5]) +
 			"\n\tPais: " + str(resultado[6]) +
-			"\n\tLocalizacion: " + str(resultado[7]) +
+			"\n\tLocation: " + str(resultado[7]) +
 			"\n\tOrganizacion: " + str(resultado[8]) +
 			"\n\tCodigo Postal: " + str(resultado[9]) +
 			"\n\tZona Horaria: " + str(resultado[10]) +
