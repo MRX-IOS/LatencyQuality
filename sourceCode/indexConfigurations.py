@@ -53,10 +53,6 @@ configurations = {
 			"timezone": {
 				"type": "keyword"
 			},
-			#"time": {
-			#	"type": "date",
-			#	"format": "HH:mm:ssZ"
-			#},
 			"host": {
 				"type": "keyword"
 			},
