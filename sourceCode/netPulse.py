@@ -26,16 +26,24 @@ def main():
 		resultado = dns.getData(host, listaNegra)
 		#print(resultado)
 
-		fecha = resultado[5].split(" ")
+		fecha = resultado[12].split(" ")
 		tabla.append(resultado)
+		# tabla = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
 		print("\n\tHost: " + str(resultado[0]) + 
 			"\n\tIp Publica: " + str(resultado[1]) + 
 			"\n\tEstado: " + str(resultado[2]) + 
 			"\n\tIntentos: " + str(resultado[3]) + "/3" + 
-			"\n\tLatencia: " + str(resultado[4]) + " ms" + 
+			"\n\tCiudad: " + str(resultado[4]) +
+			"\n\tRegion: " + str(resultado[5]) +
+			"\n\tPais: " + str(resultado[6]) +
+			"\n\tLocalizacion: " + str(resultado[7]) +
+			"\n\tOrganizacion: " + str(resultado[8]) +
+			"\n\tCodigo Postal: " + str(resultado[9]) +
+			"\n\tZona Horaria: " + str(resultado[10]) +
+			"\n\tLatencia: " + str(resultado[11]) + " ms" + 
 			"\n\tFecha: " + str(fecha[0]) + 
 			"\n\tHora: " + str(fecha[1]) + "\n"
-			"\n\tFecha completa: " + str(resultado[5]) + "\n")
+			"\n\tFecha completa: " + str(resultado[12]) + "\n")
 		
 		# Aqui se cuentan los pingFailures, ademas de trazas de estado de ejecucion
 		# Si solo se desea los pingFailures if resultado != "OK": pingfailures + 1

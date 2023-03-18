@@ -50,6 +50,11 @@ def createIndex(elastic_Server):
 		print("[INFO] Index already exists!")
 
 def generateDoc():
+	"""
+		Generate a document to send to Elasticsearch
+	"""
+	#f.to_csv(final_file_csv, index=False, encoding='utf-8', sep=';', columns=['host', 'public_ip', 'status', 'attempts', 'city', 'country', 'localization', 'organization', 'postal', 'timezone', 'latency (ms)', 'date'], na_rep='Unknow')
+
 	#### GENERATE DOCUMENT ####
 	with open(filePath, "r") as fi:
 		reader = csv.DictReader(fi, delimiter=";")
@@ -61,10 +66,17 @@ def generateDoc():
 				# "_id": row["host"],
 				"_source": {
 					"host": 		row["host"],
-					"public_ip": 		row["public_ip"],
+					"public_ip": 	row["public_ip"],
 					"status": 		row["status"],
-					"attempts": 		int(row["attempts"]),
-					"latency_ms": 		float(row["latency (ms)"]),
+					"attempts": 	int(row["attempts"]),
+					"city":			row["city"],
+					"region": 		row["region"],
+					"country": 		row["country"],
+					"localization": row["localization"],
+					"organization": row["organization"],
+					"postal": 		int(row["postal"]),
+					"timezone": 	row["timezone"],
+					"latency_ms": 	float(row["latency (ms)"]),
 					"date": 		row["date"],
 				},
 			}

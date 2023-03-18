@@ -13,13 +13,48 @@ from configuration import pingBlockFile as listaNegra
 
 
 def cleanDNSCache():
+	"""
+	Funcion que limpia la cache de resolucion DNS
+	"""
+
 	print ('\nLimpiando la cache de DNS...\n')
 	os.system("sudo " + cleanFile) #Limpiamos la cache de resolucion DNS
 
 def dnsLookUp(host):
+	"""
+	Funcion que realiza la resolucion DNS de un host
+	
+	Parameters:
+	-----------
+	host: str
+	
+	Returns:
+	--------
+	host_resolved: list
+	
+	"""
 	return socket.gethostbyname_ex(host)
 
 def getData(host, listaNegra):
+	"""
+	Funcion que realiza la resolucion DNS de un host y lanza un ping
+	
+	Parameters:
+	-----------
+	host: str
+	listaNegra: list
+	
+	Returns:
+	--------
+	pingResult: list
+	
+	"""
+	"""
+	  Ping result:
+		resultado: list 
+		resultado = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
+
+	"""
 	tablaResultado = []
 	host = host.rstrip()
 	host = host.replace("\n", "")
@@ -49,11 +84,23 @@ def getData(host, listaNegra):
 		fecha = date.today().strftime("%d-%m-%Y")
 		hora = datetime.now().strftime("%H:%M:%S")
 		fecha = fecha + " " + hora
-		pingNotPossible = [host, "N/A", "N/A", "0", "0.0", fecha]
+		pingNotPossible = [host, "N/A", "N/A", "0", "N/A", "N/A", "N/A", "N/A", "N/A", 0, "N/A", 0.0, fecha]
 
 		print("\t[" + bcolors.FAIL + bcolors.BOLD + "FAIL" + bcolors.ENDC + "] DNS " + bcolors.FAIL + "ERROR" + bcolors.ENDC + "\n")
 
 		#return host_no_resolved
 		return pingNotPossible
 		next
+
+def main():
+	hosts = ["google.com", "youtube.com"]
+	listaNegra = ["google.com", "gmail.com"]
+	for host in hosts:
+		results = getData(host, listaNegra)
+		print(results)
+	
+if __name__ == "__main__":
+	main()
+
+
 

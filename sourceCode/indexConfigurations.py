@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# f.to_csv(final_file_csv, index=False, encoding='utf-8', sep=';', columns=['host', 'public_ip', 'status', 'attempts', 'city', 'country', 'localization', 'organization', 'postal', 'timezone', 'latency (ms)', 'date'], na_rep='Unknow')
+
 configurations = {
 	"settings": {
 		"index": {"number_of_shards": 2},
@@ -32,6 +34,24 @@ configurations = {
 			"date": {
 				"type": "date",
 				"format": "dd-MM-yyyy HH:mm:ss"
+			},
+			"city": {
+				"type": "keyword"
+			},
+			"country": {
+				"type": "keyword"
+			},
+			"localization": {
+				"type": "keyword"
+			},
+			"organization": {
+				"type": "keyword"
+			},
+			"postal": {
+				"type": "long"
+			},
+			"timezone": {
+				"type": "keyword"
 			},
 			#"time": {
 			#	"type": "date",

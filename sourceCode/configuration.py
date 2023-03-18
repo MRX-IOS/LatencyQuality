@@ -7,7 +7,9 @@ from datetime import datetime
 maxPingTimeout = "0.5"
 
 # The path to the folder where the project is located
-path = "/home/mrx/TFG/proyecto/LatencyQuality/"
+
+#path = "/home/mrx/TFG/Client/proyecto/LatencyQuality/"
+path = "/home/mrx/TFG/Client/LatencyQuality/"
 
 # The path to the folder where the input files are located
 # hostsFile: the file containing the list of hosts to be tested
