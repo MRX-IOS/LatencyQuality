@@ -89,7 +89,7 @@ def run():
 	if isLowerCase(index_name) == False:
 		print("[ERROR] Index name must be lowercase!")
 	else:
-		print("[INFO] Starting script...")
+		print("[INFO] Starting Elastic bulk script...")
 		elastic_Server = connectElastic()
 		createIndex(elastic_Server)
 		result = elastic_Server.count(index=index_name)

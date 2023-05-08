@@ -26,7 +26,7 @@ def email(errors, total_hosts):
 	cuerpo1 = "Desde Sonda: 0\n¿Caída de Nodo?\n\nPrueba de calidad de conexión mediante una raspberry pi 4 model B.\nSe envian los resultados obtenidos con fecha: " + str(fecha) + " y hora: " + str(hora) + "\n\n"
 	cuerpo2 = "Desde Sonda: 0\n\nPrueba de calidad de conexión mediante una raspberry pi 4 model B.\nSe envian los resultados obtenidos con fecha: " + str(fecha) + " y hora: " + str(hora) + "\n\n"
 	ruta_adjunto = path + "exports/resultados_" + str(fecha) + ".csv"
-	print(ruta_adjunto)
+	# print(ruta_adjunto)
 	nombre_adjunto = "resultados_" + str(fecha) + ".csv"
 	aplicationPassword = 'hjzoicvkxjilrsbj'
 

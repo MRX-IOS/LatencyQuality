@@ -47,16 +47,22 @@ def main():
 	# resultado = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
 
 	for i in tabla:
-		print(i) 
+		# print(i) 
 		if i[2] != "OK":
-			if i[2] == "NA":
+			if i[2] != "KO":
 				hostsNA += 1
 			else:
 				pingFailures += 1
 		
 	pingeds = total_hosts - hostsNA
+	
+	print("==============================================")
+	print("NA HOSTS:\t" + str(hostsNA))
+	print("PINGEDS:\t" + str(pingeds))
+	print("PING FAILURES:\t" + str(pingFailures))
+	print("PING SUCCESS:\t" + str(pingeds - pingFailures))
+
 	export.csv(tabla)
-	print("\n")
 	send.email(pingFailures, pingeds)
 	sendElastic.run()
 
