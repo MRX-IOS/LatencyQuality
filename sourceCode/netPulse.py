@@ -26,17 +26,21 @@ def main():
 	print("City: " + data[1])
 	print("Region: " + data[2])
 	print("Country: " + data[3])
-	print("Location: " + data[4])
-	print("Organization: " + data[5])
-	print("Postal: " + str(data[6]))
-	print("Timezone: " + data[7])
+	print("Source Location: " + data[4])
+	print("ASN: " + data[5])
+	print("ISP: " + data[6])
+	print("Postal: " + data[7])
+	print("Timezone: " + data[8])
 
 	for host in hosts:
 		print(host + "\n")
 		resultado = dns.getData(host, listaNegra)
-		# print(resultado)
 
-		fecha = resultado[12].split(" ")
+		# data[4] = source location
+		# insertar source location en el resultado, en la posicion 7 del array (8 posiciones por el "0")
+		resultado.insert(7, data[4])
+
+		fecha = resultado[14].split(" ")
 		tabla.append(resultado)
 
 		# tabla = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
@@ -47,14 +51,16 @@ def main():
 			"\n\tCiudad: " + str(resultado[4]) +
 			"\n\tRegion: " + str(resultado[5]) +
 			"\n\tPais: " + str(resultado[6]) +
-			"\n\tLocation: " + str(resultado[7]) +
-			"\n\tOrganizacion: " + str(resultado[8]) +
-			"\n\tCodigo Postal: " + str(resultado[9]) +
-			"\n\tZona Horaria: " + str(resultado[10]) +
-			"\n\tLatencia: " + str(resultado[11]) + " ms" + 
+			"\n\tSource Point: " + str(resultado[7]) +
+			"\n\tDestination: " + str(resultado[8]) +
+			"\n\tASN: " + str(resultado[9]) +
+			"\n\tISP: " + str(resultado[10]) +
+			"\n\tCodigo Postal: " + str(resultado[11]) +
+			"\n\tZona Horaria: " + str(resultado[12]) +
+			"\n\tLatencia: " + str(resultado[13]) + " ms" + 
 			"\n\tFecha: " + str(fecha[0]) + 
 			"\n\tHora: " + str(fecha[1]) + "\n"
-			"\n\tFecha completa: " + str(resultado[12]) + "\n")
+			"\n\tFecha completa: " + str(resultado[14]) + "\n")
 		
 		# Aqui se cuentan los pingFailures, ademas de trazas de estado de ejecucion
 		# Si solo se desea los pingFailures if resultado != "OK": pingfailures + 1

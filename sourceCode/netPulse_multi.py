@@ -19,8 +19,9 @@ def getData_Tread(host, listaNegra):
 
 def main():
 	tabla = []
-	pingFailures = 0
 	hostsNA = 0
+	numWorkers = 6
+	pingFailures = 0
 
 	hosts = li.getList(hostsFile)
 	listaNegra = li.getList(pingBlockFile)
@@ -33,18 +34,20 @@ def main():
 	print("City: " + data[1])
 	print("Region: " + data[2])
 	print("Country: " + data[3])
-	print("Location: " + data[4])
-	print("Organization: " + data[5])
-	print("Postal: " + str(data[6]))
-	print("Timezone: " + data[7])
+	print("Source_point: " + data[4])
+	print("ASN: " + data[5])
+	print("ISP: " + data[6])
+	print("Postal: " + str(data[7]))
+	print("Timezone: " + data[8])
 
-	with ThreadPoolExecutor(max_workers=6) as executor:	
+	with ThreadPoolExecutor(max_workers=numWorkers) as executor:	
 		futures = [executor.submit(getData_Tread, host, listaNegra) for host in hosts]
 		for future in as_completed(futures):
 			resultado = future.result()
+			resultado.insert(7, data[4]) # insertar source location en el resultado, en la posicion 7 del array (8 posiciones por el "0")
 			tabla.append(resultado)
 
-	# resultado = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
+	# resultado = [host, publicIp, estado, intentos, city, region, country, src, dst, asn, isp, postal, timezone, time, fecha]
 
 	for i in tabla:
 		# print(i) 
@@ -63,6 +66,7 @@ def main():
 	print("PING SUCCESS:\t" + str(pingeds - pingFailures))
 
 	export.csv(tabla)
+	export.json(tabla)
 	send.email(pingFailures, pingeds)
 	sendElastic.run()
 

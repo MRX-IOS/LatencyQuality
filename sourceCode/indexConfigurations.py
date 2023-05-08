@@ -41,14 +41,20 @@ configurations = {
 			"country": {
 				"type": "keyword"
 			},
-            "location": {
+			"source_point": {
+				"type": "geo_point"
+			},
+            "destination": {
                "type": "geo_point"
             },
-			"organization": {
+			"ASN": {
+				"type": "keyword"
+			},
+			"ISP": {
 				"type": "keyword"
 			},
 			"postal": {
-				"type": "long"
+				"type": "keyword"
 			},
 			"timezone": {
 				"type": "keyword"

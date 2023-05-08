@@ -52,7 +52,7 @@ def getData(host, listaNegra):
 	"""
 	  Ping result:
 		resultado: list 
-		resultado = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
+		resultado = [host, publicIp, estado, intentos, city, region, country, loc, asn, isp, postal, timezone, time, fecha]
 
 	"""
 	tablaResultado = []
@@ -89,7 +89,8 @@ def getData(host, listaNegra):
 		loc Geopoint	
 		"""
 		loc = "0.0,0.0"
-		pingNotPossible = [host, "N/A", "N/A", "0", "N/A", "N/A", "N/A", loc, "N/A", 0, "N/A", 0.0, fecha]
+		# resultado = [host, publicIp, estado, intentos, city, region, country, loc, asn, isp, postal, timezone, time, fecha]
+		pingNotPossible = [host, "N/A", "N/A", "0", "N/A", "N/A", "N/A", loc, "N/A", "N/A", "N/A", "N/A", 0.0, fecha]
 
 		print("\t[" + bcolors.FAIL + bcolors.BOLD + "FAIL" + bcolors.ENDC + "] DNS " + bcolors.FAIL + "ERROR" + bcolors.ENDC + "\n")
 
@@ -100,6 +101,7 @@ def getData(host, listaNegra):
 def main():
 	hosts = ["google.com", "youtube.com"]
 	listaNegra = ["google.com", "gmail.com"]
+	print("host, publicIp, estado, intentos, city, region, country, loc, asn, isp, postal, timezone, time, fecha")
 	for host in hosts:
 		results = getData(host, listaNegra)
 		print(results)

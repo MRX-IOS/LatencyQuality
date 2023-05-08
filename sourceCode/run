@@ -6,7 +6,10 @@ Script para ejecutar el programa netPulse.py desde crontab
 
 """
 path=/home/mrx/TFG/proyecto/LatencyQuality/sourceCode
-executable=${path}/netPulse.py
+
+executable=${path}/netPulse_multi.py
+# executable=${path}/netPulse.py
+
 date_Date=$(date "+%d-%m-%Y")
 date_Time=$(date "+%H:%M:%S")
 final_path=/home/mrx/TFG/proyecto/LatencyQuality/logs/${date_Date}.cron.log

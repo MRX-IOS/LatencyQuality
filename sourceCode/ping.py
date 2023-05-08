@@ -23,9 +23,9 @@ def run(host, listaNegra):
 	Returns:
 	--------
 	resultado: list
-		info = [city, region, country, loc, org, postal, timezone]
+		info = [city, region, country, destination, asn, isp, postal, timezone]
 
-		resultado = [host, publicIp, estado, intentos, city, country, loc, org, postal, timezone, time, fecha]
+		resultado = [host, publicIp, estado, intentos, city, country, destination, asn, isp, postal, timezone, time, fecha]
 	"""
 
 	resultado = []
@@ -35,9 +35,10 @@ def run(host, listaNegra):
 	region = "N/A"
 	country = "N/A"
 	# loc geoPoint
-	loc = "0.0,0.0"
-	org = "N/A"
-	postal = 0
+	destination = "0.0, 0.0"
+	asn = "N/A"
+	isp = "N/A"
+	postal = "0"
 	timezone = "N/A"
 	time = 0.0
 	publicIp = "N/A"
@@ -59,10 +60,10 @@ def run(host, listaNegra):
 				time = respuesta.split('time=')[1].split(' ms')[0]
 				print("\t[" + str(intentos) + "] Estado del servicio:\t[" + bcolors.BOLD + bcolors.OK + "OK" + bcolors.ENDC + "]")
 
-				# ciudad, region, pais, loc, org, postal, timezone
+				# ciudad, region, pais, destination, asn, isp, postal, timezone
 				publicIp = str(respuesta.split('(')[1].split(')')[0])
 				
-				city, region, country, loc, org, postal, timezone = getInfo(publicIp)
+				city, region, country, destination, asn, isp, postal, timezone = getInfo(publicIp)
 				print("\tTiempo de respuesta: " + time + " ms")
 				exito = True # Salir del bucle
 			else:
@@ -77,13 +78,14 @@ def run(host, listaNegra):
 	fecha = date.today().strftime("%d-%m-%Y")
 	hora = datetime.now().strftime("%H:%M:%S")
 	fecha = fecha + " " + hora
-	resultado = [host, publicIp, estado, intentos, city, region, country, loc, org, postal, timezone, time, fecha]
+	resultado = [host, publicIp, estado, intentos, city, region, country, destination, asn, isp, postal, timezone, time, fecha]
 	return resultado
 
 # prueba con dos dominios y una lista negra
 if __name__ == "__main__":
 	listaNegra = ["www.google.com", "www.yahoo.com"]
-	lista = ["www.google.com", "www.gmail.com"]
+	lista = ["abc.es", "www.google.com", "www.gmail.com"]
 	for host in lista:
-		run(host, listaNegra)
+		print("Host: " + host)
+		print(run(host, listaNegra))
 	

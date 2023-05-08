@@ -65,7 +65,9 @@ def getInfo(host):
 	country = ''
 	loc = ''
 	org = ''
-	postal = 0
+	asn = ''
+	isp = ''
+	postal = ''
 	timezone = ''
 	
 	# os.system("curl -s https://ipinfo.io/" + host + "/json?token=" + token)
@@ -83,16 +85,21 @@ def getInfo(host):
 		loc = elements['loc']
 	if 'org' in elements:
 		org = elements['org']
+		asn = org.split(' ')[0]
+		# lo que queda de org
+		isp = org.split(' ', 1)[1]
 	if 'postal' in elements:
-		postal = int(elements['postal'])
+		postal = elements['postal']
 	if 'timezone' in elements:
 		timezone = elements['timezone']
 
-	info = [city, region, country, loc, org, postal, timezone]
+	info = [city, region, country, loc, asn, isp, postal, timezone]
 	return info
 
 if __name__ == '__main__':
 	print("MY PUBLIC IP:= ", myPublicIP())
 	print("MY DATA:= ", myData())
-	print(getInfo('92.189.190.237'))
-	print(getInfo('39.156.66.10')) # baidu.com
+	print("PARAMETERS: \t city, region, country, loc, org, postal, timezone")
+	print("HOME: \t\t", getInfo('92.189.190.237'))
+	print("BAIDU.COM: \t", getInfo('39.156.66.10')) # baidu.com
+	print("UPM.ES: \t", getInfo('138.100.200.6')) # upm.es
