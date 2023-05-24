@@ -6,7 +6,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from datetime import datetime
 from datetime import date
-from configuration import path
+from configuration import projectPath
 from configuration import fecha
 
 def email(errors, total_hosts):
@@ -25,7 +25,7 @@ def email(errors, total_hosts):
 	asunto2 = "[RPI] [S0] Calidad de conexión " + str(fecha) + " " + str(hora)
 	cuerpo1 = "Desde Sonda: 0\n¿Caída de Nodo?\n\nPrueba de calidad de conexión mediante una raspberry pi 4 model B.\nSe envian los resultados obtenidos con fecha: " + str(fecha) + " y hora: " + str(hora) + "\n\n"
 	cuerpo2 = "Desde Sonda: 0\n\nPrueba de calidad de conexión mediante una raspberry pi 4 model B.\nSe envian los resultados obtenidos con fecha: " + str(fecha) + " y hora: " + str(hora) + "\n\n"
-	ruta_adjunto = path + "exports/resultados_" + str(fecha) + ".csv"
+	ruta_adjunto = projectPath + "exports/resultados_" + str(fecha) + ".csv"
 	# print(ruta_adjunto)
 	nombre_adjunto = "resultados_" + str(fecha) + ".csv"
 	aplicationPassword = 'hjzoicvkxjilrsbj'

@@ -2,11 +2,11 @@
 
 import json
 import pandas as pd
-from configuration import path, fecha
+from configuration import projectPath, fecha
 import bcolors
 
-final_file_csv = path + "exports/resultados_" + str(fecha) + ".csv"
-final_file_json = path + "exports/resultados_" + str(fecha) + ".json"
+final_file_csv = projectPath + "exports/resultados_" + str(fecha) + ".csv"
+final_file_json = projectPath + "exports/resultados_" + str(fecha) + ".json"
 
 def csv(tabla):
 	"""

@@ -8,8 +8,8 @@ import bcolors
 from datetime import date
 from datetime import datetime
 
-from configuration import cleanFile
-from configuration import pingBlockFile as listaNegra
+from configuration import cleanFilePath
+from configuration import pingBlockFilePath as listaNegra
 
 
 def cleanDNSCache():
@@ -18,7 +18,7 @@ def cleanDNSCache():
 	"""
 
 	print ('\nLimpiando la cache de DNS...\n')
-	os.system("sudo " + cleanFile) #Limpiamos la cache de resolucion DNS
+	os.system("sudo " + cleanFilePath) #Limpiamos la cache de resolucion DNS
 
 def dnsLookUp(host):
 	"""

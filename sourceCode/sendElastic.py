@@ -2,7 +2,7 @@
 
 from elasticsearch import Elasticsearch, helpers, RequestsHttpConnection
 from indexConfigurations import configurations
-from configuration import path
+from configuration import projectPath
 import csv
 import json
 from datetime import date
@@ -17,7 +17,7 @@ Port = 9200
 index_name = "sonda_0"
 
 #### FILE PATH ####
-filePath = path + "exports/resultados_" + fecha + ".csv"
+filePath = projectPath + "exports/resultados_" + fecha + ".csv"
 # print(filePath)
 
 def isLowerCase(s):

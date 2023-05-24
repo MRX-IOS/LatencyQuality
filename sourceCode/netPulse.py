@@ -15,8 +15,8 @@ def main():
 	pingFailures = 0
 	hostsNA = 0
 
-	hosts = li.getList(hostsFile)
-	listaNegra = li.getList(pingBlockFile)
+	hosts = li.getList(hostsFilePath)
+	listaNegra = li.getList(pingBlockFilePath)
 	total_hosts = len(hosts)
 
 	dns.cleanDNSCache()
