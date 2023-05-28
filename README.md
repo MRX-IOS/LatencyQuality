@@ -25,8 +25,13 @@ Follow the steps below to get started with LatencyQuality:
 2. **Configuration**: Edit the configuration file located in the source code directory by specifying your desired path and variables. Customize the tool's settings according to your specific requirements, such as defining the test scenarios and thresholds for alerts.
 
 3. **Running the Tool**: To run the tool and initiate QoS measurements from the client side, use one of the following commands in the terminal:
+
+### Single Thread Version
+To run the tool and initiate QoS measurements from the client side, use the following command in the terminal: 
+
+```python
 python sourceCode/netpulse.py
-python sourceCode/netpulse_multy.py
+
 
 4. **Analysis and Reporting**: Explore the generated reports, graphs, and visualizations to gain insights into QoS performance and identify areas for improvement.
 
