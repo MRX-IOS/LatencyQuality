@@ -4,5 +4,6 @@
 \.project
 \.settings
 \.metadata/
+\.__pycache__/
 Servers/
 target/
