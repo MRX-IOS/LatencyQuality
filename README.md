@@ -32,13 +32,13 @@ vim sourceCode/configuration.py
 - **Single Thread Version**
 To run the tool and initiate QoS measurements from the client side, use the following command in the terminal: 
 
-```python
+```bash
 python sourceCode/netpulse.py
 ```
 
 - **Multi Thread Verssion**
 Alternatively, you can use the multithreaded version of the tool. Execute the following command in the terminal:
-```python
+```bash
 python sourceCode/netpulse_multi.py
 ```
 
