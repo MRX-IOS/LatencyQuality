@@ -67,8 +67,16 @@ def main():
 
 	export.csv(tabla)
 	export.json(tabla)
-	send.email(pingFailures, pingeds)
-	sendElastic.run()
+	try:
+		send.email(pingFailures, pingeds)
+	except:
+		print(bcolors.FAIL + "Error sending email" + bcolors.ENDC)
+		pass
+	try:
+		sendElastic.run()
+	except:
+		print(bcolors.FAIL + "Error sending data to Elastic" + bcolors.ENDC)
+		pass
 
 if __name__ == "__main__":
     main()

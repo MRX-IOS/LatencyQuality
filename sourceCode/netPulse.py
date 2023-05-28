@@ -82,8 +82,14 @@ def main():
 	export.csv(tabla)
 	export.json(tabla)
 	print("\n")
-	send.email(pingFailures, pingeds)
-	sendElastic.run()
+	try:
+		send.email(pingFailures, pingeds)
+	except:
+		print("Error al enviar el email")
+	try:
+		sendElastic.run()
+	except:
+		print("Error al enviar a ElasticSearch")
 
 if __name__ == "__main__":
     main()
