@@ -1,5 +1,5 @@
 # LatencyQuality
 
-v0.1.6
+v0.3.2
 	
 
