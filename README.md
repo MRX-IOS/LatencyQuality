@@ -26,14 +26,14 @@ Follow the steps below to get started with LatencyQuality:
 
 3. **Running the Tool**: To run the tool and initiate QoS measurements from the client side, use one of the following commands in the terminal:
 
-- Single Thread Version
+- **Single Thread Version**
 To run the tool and initiate QoS measurements from the client side, use the following command in the terminal: 
 
 ```python
 python sourceCode/netpulse.py
 ```
 
-- Multi Thread Verssion
+- **Multi Thread Verssion**
 Alternatively, you can use the multithreaded version of the tool. Execute the following command in the terminal:
 ```python
 python sourceCode/netpulse_multi.py
