@@ -34,6 +34,7 @@ python sourceCode/netpulse.py
 ```
 
 #### Multi Thread Verssion
+Alternatively, you can use the multithreaded version of the tool. Execute the following command in the terminal:
 ```python
 python sourceCode/netpulse_multi.py
 ```
