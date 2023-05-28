@@ -33,6 +33,10 @@ To run the tool and initiate QoS measurements from the client side, use the foll
 python sourceCode/netpulse.py
 ```
 
+#### Multi Thread Verssion
+```python
+python sourceCode/netpulse_multi.py
+```
 
 ### 4. **Analysis and Reporting**: Explore the generated reports, graphs, and visualizations to gain insights into QoS performance and identify areas for improvement.
 
