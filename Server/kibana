@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Verbose mode
+if [ "$1" == "-v" ]; then
+	verbose=true
+	echo "Verbose mode on"
+fi
+
+# Functions
+function enable {
+	if systemctl is-enabled --quiet $1; then
+		if [ "$verbose" == "true" ]; then
+			echo -e "\t[>] ${GREEN}Done${NC}\n"
+		fi
+	else
+		if [ "$verbose" == "true" ]; then
+			echo -e "\t[>] ${YELLOW}Warning $1 is not enable${NC}\n"
+		fi
+		sudo systemctl enable $1
+	fi
+}
+
+function active {
+	if systemctl is-active --quiet $1; then
+		if [ "$verbose" == "true" ]; then
+			echo -e "\t[>] ${GREEN}Done${NC}\n"
+		fi
+	else
+		if [ "$verbose" == "true" ]; then
+			echo -e "\t[>] ${RED}Error $1 is not active${NC}\n"
+		fi
+	fi
+	echo -e "\tRestarting $1"
+	sudo systemctl restart $1
+}
+
+# ----------------------------------------------
+# INSTALLATION 
+# ----------------------------------------------
+# sudo apt install kibana
+
+# ----------------------------------------------
+# SECURITY
+#-----------------------------------------------
+# Si se quiere acceder desde fuera
+# primero activar firewall
+# sudo ufw enable
+# sudo ufw allow 5601
+# Solo una ip
+# sudo ufw allow from 192.168.1.16 to any port 5601
+# sudo ufw status numbered
+# user and password
+# echo "kibanaadmin:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
+
+# ----------------------------------------------
+# CONFIGURATION
+# ----------------------------------------------
+# sudo vim /etc/kibana/kibana.yml
+# network.host: 0.0.0.0
+# http.port: 5601
+# At the end of the file in Security section
+# discovery.type: single-node
+
+# ----------------------------------------------
+# SERVICE
+# ----------------------------------------------
+# enable:
+enable kibana
+# start:
+active kibana
+
+# ----------------------------------------------
+# TEST
+# ----------------------------------------------
+# open a browser and go to http://localhost:5601

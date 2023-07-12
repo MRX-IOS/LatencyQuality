@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# COLORS
+RED='\033[0;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+green_dot="${GREEN}●${NC}"
+red_dot="${RED}●${NC}"
+yellow_dot="${YELLOW}●${NC}"
+
+function isActive {
+	if [[ $(systemctl is-active $1) == *"active"* ]]; then
+		echo -e "\t[>] ${GREEN}Done${NC}\n"
+	else
+		echo -e "\t[>] ${RED}Error $1 is not active${NC}\n"
+		echo -e "\t[>] ${YELLOW}Try to run \"sudo systemctl status $1\"${NC}\n"
+	fi
+}
+
+echo "Checking PreRequisites ..."
+echo -e "\t[+] Checking Java v11"
+# check java is installed and is version 11
+if ! [ -x "$(command -v java)" ]; then
+	echo 'Error: java is not installed.' >&2
+	# you want to install java 11
+	read -p "Do you want to install java 11? [y/n] " -n 1 -r
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo add-apt-repository ppa:openjdk-r/ppa
+		sudo apt-get update
+		sudo apt install openjdk-11-jdk
+	else
+		echo -e "Aborted\n"
+		exit 1
+	fi
+else
+	if ! [[ $(java -version 2>&1) == *"openjdk version \"11"* ]]; then
+		echo 'Error: java 11 is not setted.' >&2
+		echo 'Try to downgrade version with: sudo update-alternatives --config java' >&2
+		exit 1
+	fi
+fi
+
+echo -e "\t[+] Checking Nginx"
+# NGINX ACTIVE
+if ! [ -x "$(command -v nginx)" ]; then
+	echo 'Error: nginx is not installed.' >&2
+	read -p "Do you want to install nginx? [y/n] " -n 1 -r
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo apt-get update
+		sudo apt-get install nginx
+	else
+		echo -e "Aborted\n"
+		exit 1
+	fi
+fi
+echo -e "\t[>] ${GREEN}Done${NC}\n"
+
+#---------------------------------------
+# NGINX
+#---------------------------------------
+echo "Starting Services"
+echo -e "\t[+] Starting Nginx"
+./nginx
+isActive nginx
+
+#---------------------------------------
+# ELASTICSEARCH
+#---------------------------------------
+echo -e "\t[+] Starting Elasticsearch"
+./elasticSearch
+isActive elasticsearch
+
+#---------------------------------------
+# KIBANA
+#---------------------------------------
+echo -e "\t[+] Starting Kibana"
+./kibana
+isActive kibana
+
+# echo -e "\t[+] Starting Logstash"
+# ./logstash.sh
+# isActive logstash
+# 
+# echo -e "\t[+] Starting Filebeat"
+# ./filebeat.sh
+# isActive filebeat
+
+./infoServices

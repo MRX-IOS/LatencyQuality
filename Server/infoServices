@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# COLORS
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+green_dot="${GREEN}●${NC}"
+red_dot="${RED}●${NC}"
+yellow_dot="${YELLOW}●${NC}"
+
+function active {
+	if systemctl is-active --quiet $1; then
+		echo -e "${green_dot} status: ${GREEN}active\t${NC} service: ${GREEN}$1${NC}"
+	else
+		echo -e "${red_dot} status: ${RED}inactive\t${NC} service: ${RED}$1${NC}"
+	fi
+}
+
+# list of services
+services=(
+	"nginx"
+	"elasticsearch"
+	"kibana"
+	"logshtash"
+	"filebeat"
+	)
+
+echo ""
+echo "-------------------------"
+echo "Services"
+echo "-------------------------"
+echo ""
+# for each service
+for service in "${services[@]}"
+do
+	active $service
+done
+echo ""

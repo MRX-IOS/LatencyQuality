@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 # Path variables
-projectPath = "/home/mrx/TFG/proyecto/LatencyQuality/"
+projectPath = "/home/mrx/TFG/proyecto/LatencyQuality/Client"
 
 # File paths
 hostsFilePath = projectPath + 'inFiles/TotalWebs.txt'
