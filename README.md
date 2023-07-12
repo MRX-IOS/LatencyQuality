@@ -37,7 +37,7 @@ To get started with LatencyQuality, follow these instructions:
 To run the main program and measure latency and QoS metrics, execute the following command:
 
 ```bash
-python3 sourceCode/netpulse.py
+python3 ./Client/sourceCode/netpulse.py
 ```
 
 The program will start running and display the results on the console.
@@ -48,7 +48,7 @@ To run the multithreading version of the program, which allows for concurrent me
 
 
 ```bash
-python3 sourceCode/netpulse_multi.py
+python3 ./Client/sourceCode/netpulse_multi.py
 ```
 
 The multithreading version provides improved performance when measuring latency and network performance metrics.
@@ -88,4 +88,4 @@ We would like to acknowledge the following resources and projects that have insp
 
 ## Contact
 
-For any questions or suggestions, please feel free to reach out to the project maintainer at [your-email@example.com](mailto:your-email@example.com).
+For any questions or suggestions, please feel free to reach out to the project maintainer at [rodrigo.santaana.reina@alumnos.upm.es](rodrigo.santaana.reina@alumnos.upm.es).

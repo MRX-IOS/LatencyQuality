@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 
 from elasticsearch import Elasticsearch, helpers, RequestsHttpConnection
+from elasticsearch.exceptions import ElasticsearchWarning
 from indexConfigurations import configurations
 from configuration import projectPath, fecha, elasticHost, elasticPort, elasticUser, elasticPassword, elasticIndex
-import csv
-import json
 from datetime import date
+import warnings
+import json
+import csv
+
+warnings.filterwarnings("ignore", category=ElasticsearchWarning)
 
 #### FILE PATH ####
 filePath = projectPath + "exports/resultados_" + fecha + ".csv"
