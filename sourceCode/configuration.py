@@ -2,10 +2,10 @@
 
 from datetime import date
 from datetime import datetime
+import os
 
 # Path variables
 projectPath = "/home/mrx/TFG/proyecto/LatencyQuality/"
-#projectPath = "/home/mrx/TFG/Client/LatencyQuality/"
 
 # File paths
 hostsFilePath = projectPath + 'inFiles/TotalWebs.txt'
@@ -14,11 +14,14 @@ cleanFilePath = projectPath + 'clean/dns-clean'
 resultsPath = projectPath + 'results/'
 
 # Ping variables
-# The maximum timeout for the ping command
-# This value can be modified in production or development environments
-maxPingTimeout = "0.2"
+maxPingTimeout = "0.2" # seconds (200 ms) max ping timeout
 
 # Date variables
-# dd/mm/YY
-fecha = date.today().strftime("%d-%m-%Y")
+fecha = date.today().strftime("%d-%m-%Y") # dd/mm/YY
 
+# Elastic variables
+elasticHost = "92.189.190.237"
+elasticPort = "999"
+elasticUser = "sonda"
+elasticPassword = "sonda_tfg_2023"
+elasticIndex = "sonda_0"

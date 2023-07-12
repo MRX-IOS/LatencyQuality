@@ -2,23 +2,13 @@
 
 from elasticsearch import Elasticsearch, helpers, RequestsHttpConnection
 from indexConfigurations import configurations
-from configuration import projectPath
+from configuration import projectPath, fecha, elasticHost, elasticPort, elasticUser, elasticPassword, elasticIndex
 import csv
 import json
 from datetime import date
 
-#### DATE ####
-# dd/mm/YY
-fecha = date.today().strftime("%d-%m-%Y")
-
-#### ELASTICSEARCH CONFIGURATIONS ####
-Host = "192.168.1.58"
-Port = 9200
-index_name = "sonda_0"
-
 #### FILE PATH ####
 filePath = projectPath + "exports/resultados_" + fecha + ".csv"
-# print(filePath)
 
 def isLowerCase(s):
 	if s != s.lower():
@@ -28,22 +18,23 @@ def isLowerCase(s):
 
 def connectElastic():
 	#### CONECTION ####
-	print("\n[+]\tHost: " + Host)
-	print("[+]\tPort: " + str(Port))
-	print("[+]\tSonda: " + index_name)
+	print("\n[+]\tHost: " + elasticHost)
+	print("[+]\tPort: " + str(elasticPort))
+	print("[+]\tUser: " + elasticUser)
+	print("[+]\tSonda: " + elasticIndex)
 	print("")
 
 	print("[INFO] Connecting to Elasticsearch...")
-	elastic_Server = Elasticsearch(host = Host, port = Port)
+	elastic_Server = Elasticsearch(host = elasticHost, port = elasticPort, http_auth=(elasticUser, elasticPassword), timeout=30, max_retries=10, retry_on_timeout=True)
 	return elastic_Server
 
 def createIndex(elastic_Server):
 	#### CREATE INDICE ####
 	# create index if not exists
-	if not elastic_Server.indices.exists(index = index_name):
+	if not elastic_Server.indices.exists(index = elasticIndex):
 		print("[INFO] Creating index...")
 		elastic_Server.indices.create(
-			index = index_name,
+			index = elasticIndex,
 			body = configurations
 		)
 	else:
@@ -51,7 +42,7 @@ def createIndex(elastic_Server):
 
 def generateDoc():
 	""" 
-		Generate a document to send to Elasticsearch
+		Generate the document to send to Elasticsearch
 	"""
 	#### GENERATE DOCUMENT ####
 
@@ -61,7 +52,7 @@ def generateDoc():
 	
 		for row in reader:
 			doc = {
-				"_index": index_name,
+				"_index": elasticIndex,
 				"_source": {
 					"host": 		row["host"],
 					"public_ip": 	row["public_ip"],
@@ -88,21 +79,20 @@ def sendData(elastic_Server, doc):
 	helpers.bulk(elastic_Server, doc)
 
 def run():
-	if isLowerCase(index_name) == False:
+	if isLowerCase(elasticIndex) == False:
 		print("[ERROR] Index name must be lowercase!")
 	else:
 		print("[INFO] Starting Elastic bulk script...")
 		elastic_Server = connectElastic()
 		createIndex(elastic_Server)
-		result = elastic_Server.count(index=index_name)
+		result = elastic_Server.count(index=elasticIndex)
 		print("[INFO] Indexing data...")
 		doc = generateDoc()
-		#doc = {}
 		print("[INFO] Sending data to Elasticsearch...")
 		sendData(elastic_Server, doc)
 
 	# Check the results:
-	result = elastic_Server.count(index=index_name)
+	result = elastic_Server.count(index=elasticIndex)
 	return result
 
-# run()
+run()
