@@ -5,6 +5,7 @@ from elasticsearch.exceptions import ElasticsearchWarning
 from indexConfigurations import configurations
 from configuration import projectPath, fecha, elasticHost, elasticPort, elasticUser, elasticPassword, elasticIndex
 from datetime import date
+import bcolors
 import warnings
 import json
 import csv
@@ -82,7 +83,12 @@ def generateDoc():
 
 def sendData(elastic_Server, doc):
 	#### SEND DATA ####
-	helpers.bulk(elastic_Server, doc)
+	try:
+		helpers.bulk(elastic_Server, doc)
+		print("[INFO]" + bcolors.OK + bcolors.BOLD + " Done" + bcolors.ENDC)
+	except:
+		print("[INFO]" + bcolors.FAIL + bcolors.BOLD + " FAIL" + bcolors.ENDC)
+
 
 def run():
 	if isLowerCase(elasticIndex) == False:
@@ -101,4 +107,4 @@ def run():
 	result = elastic_Server.count(index=elasticIndex)
 	return result
 
-# run()
+#run()
