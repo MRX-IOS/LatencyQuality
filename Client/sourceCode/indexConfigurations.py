@@ -42,10 +42,14 @@ configurations = {
 				"type": "keyword"
 			},
 			"source_point": {
-				"type": "geo_point"
+				"type": "geo_point",
+				"ignore_malformed": True,
+				"null_value": "0,0"
 			},
-            "destination": {
-               "type": "geo_point"
+			"destination": {
+				"type": "geo_point",
+				"ignore_malformed": True,
+				"null_value": "0,0"
             },
 			"ASN": {
 				"type": "keyword"

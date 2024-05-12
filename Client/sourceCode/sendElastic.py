@@ -55,6 +55,8 @@ def generateDoc():
 		actions = []
 	
 		for row in reader:
+			if not row["destination"].strip():
+				row['destination'] = "0,0"  # Default value or consider omitting the key
 			doc = {
 				"_index": elasticIndex,
 				"_source": {
@@ -99,4 +101,4 @@ def run():
 	result = elastic_Server.count(index=elasticIndex)
 	return result
 
-run()
+# run()
