@@ -61,7 +61,7 @@ The `configuration.py` file contains various settings that can be customized for
 
 The LatencyQuality project has the following dependencies:
 
-- Python 3.x
+- Python 3.10.12
 - Additional dependencies specified in the `requirements.txt` file
 
 To install the dependencies, run the following command:
